@@ -1,0 +1,27 @@
+<head>
+<script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
+<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+
+<script>
+    console.log('hi')
+    // Set the configuration for your app
+    // TODO: Replace with your project's config object
+    var config = {
+        apiKey: "AIzaSyBl7U6MsV-6XNTGe_-rD6o_uBXTaLdeVz0",
+        authDomain: "projectId.firebaseapp.com",
+        databaseURL: "https://project-orbis.firebaseio.com",
+        storageBucket: "bucket.appspot.com"
+    };
+    firebase.initializeApp(config);
+
+    // Get a reference to the database service
+    var database = firebase.database();
+
+    const dbRef = firebase.database().ref().child('object');
+
+    dbRef.on('value', snap => console.log(snap.val()));
+
+</script>
+
+</head>
+
