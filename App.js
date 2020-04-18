@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import * as SQLite from 'expo-sqlite';
 
 import Header from './components/Header';
 import Home from './screens/Home';
@@ -11,6 +12,11 @@ import * as coreData from './assets/data/data';
 
 
 export default function App() {
+    let db = SQLite.openDatabase('./database/orbis.db')
+    db.transaction((txn) => {
+        txn.executeSql('SELECT * FROM Info_Fields', [],
+        (txn, rs) => console.log(rs.rows),
+        (error) => console.log(error)) })
     const[screenState, setScreenState] = useState(0); 
     //const[selectCountry, setSelectCountry] = useState(0);
     var selectedCountry
@@ -21,7 +27,7 @@ export default function App() {
         {    
             CountryList.push(coreData[c])
             selectedCountry = coreData[c]
-            console.log(c)
+            //console.log(c)
         }
     })
 
@@ -47,7 +53,7 @@ export default function App() {
     }
 
     return (
-        <View>
+        <View style={styles.container}>
             <Header title="Project Orbis" screenState={screenState} onHome={setScreenState}></Header> 
             {screenContent}
         </View>
@@ -55,7 +61,10 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
-    app_container: {
-        
-    }
+    container: {
+        flex: 1,
+        backgroundColor: '#ffffff',
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+    },
 });
