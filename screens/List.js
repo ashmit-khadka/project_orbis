@@ -1,13 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {View, StyleSheet, FlatList, Text} from 'react-native';
 
 import ListItem from '../components/ListItem'
-import * as data from '../assets/data/data';
-
-
-
-
-
 
 const List = props => {
     return (
@@ -16,7 +10,7 @@ const List = props => {
                 data={props.list}
                 style={styles.container}
                 renderItem={({item}) => (
-                    <ListItem id={item.id} lable={item.name} flag={require('../assets/flags/algeria.png')} onSelect={props.onSelect}/>
+                    <ListItem id={item.id} lable={item.name} flag={item.img_flag} onSelect={props.onSelect}/>
                 )}
                 keyExtractor={item => item.name}
             />

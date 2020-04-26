@@ -32,9 +32,10 @@ const styles = StyleSheet.create({
         borderRadius: 10,
     },
     button_icon: {
-        width: 30, 
         height: 30,
-        left: 40,
+        width: '50%',
+        resizeMode: 'center',
+        left: -40,
         position: 'absolute',
     },
     button_text: {
